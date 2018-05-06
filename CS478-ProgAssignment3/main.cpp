@@ -8,13 +8,12 @@
 
 #include <iostream>
 #include <fstream>
-#include <stdio.h>
 #include "DES.h"
 #include <string>
 #include <stdio.h>
 #include "BinaryString.h"
 #include "EnDecrypt.h"
-
+#include <string.h>
 using namespace std;
 
 int main(int argc, char* argv[]) {

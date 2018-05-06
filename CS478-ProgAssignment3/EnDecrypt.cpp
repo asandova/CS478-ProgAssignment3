@@ -6,13 +6,13 @@
 		I had received help from classmates to get openssl to work
 */
 
-#include <openssl\rsa.h>
-#include <openssl\pem.h>
-#include <openssl\evp.h>
-#include <openssl\sha.h>
-#include <openssl\crypto.h>
-#include <openssl\engine.h>
-#include <openssl\rand.h>
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
+#include <openssl/evp.h>
+#include <openssl/sha.h>
+#include <openssl/crypto.h>
+#include <openssl/engine.h>
+#include <openssl/rand.h>
 #include <stdlib.h>
 #include <fstream>
 #include <string>
@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include "EnDecrypt.h"
 #include "DES.h"
+#include "BinaryString.h"
 
 using namespace std;
 
@@ -82,11 +83,13 @@ void PARTII(string pub3path, string sessionpath, string privkeypath,string plain
 			exit(1);
 		}
 	}
-
+	cout << "Preparing for DES encryption" << endl;
 	string key = BString::TexttoHex(sess.substr(0,8));
-	DES des = DES::DES(BString::TexttoHex(IV), key,true);
+	DES des = DES(IV, key,true);
 	string desCipher = des.Encrypt(plain,false);
+	cout << "DES encryption result saved to file" << endl;
 	writefile(desCipher.c_str(),desCipher.size(), cipherOutPath);
+	cout << "signing encryption with private key" << endl;
 	sign(cipherOutPath,privkeypath, signout);
 }
 void PARTIII(string pubpath,string sessionpath,string cipherpath,string IVpath,string signpath) {
@@ -96,7 +99,7 @@ void PARTIII(string pubpath,string sessionpath,string cipherpath,string IVpath,s
 	string cipher = readfile(cipherpath);
 	string IV = readfile(IVpath);
 	string out = "PARTIII_Output.txt";
-	DES des = DES::DES(IV,key,true);
+	DES des = DES(IV,key,true);
 
 	//verify signature
 	if (verify_sign(pubpath, cipherpath, signpath) == 1) {
@@ -192,7 +195,7 @@ void sign(string plainpath,string privpath,string outpath) {
 		exit(1);
 	}
 	unsigned char *md, *sign, *DESCipher;
-	size_t mdlen = 23, signlen, DESlen;
+	size_t mdlen = 32, signlen, DESlen;
 	EVP_PKEY *signkey;
 	FILE *DESCipF = fopen(plainpath.c_str(), "r");
 	FILE *privkeyF = fopen(privpath.c_str(), "r");
@@ -203,6 +206,10 @@ void sign(string plainpath,string privpath,string outpath) {
 
 	fseek(DESCipF, 0, SEEK_END);
 	DESlen = ftell(DESCipF);
+	fseek(DESCipF,0,SEEK_SET);
+	DESCipher = (unsigned char *)malloc(DESlen);
+	fread(DESCipher,1,DESlen,DESCipF);
+	fclose(DESCipF);
 
 	md=(unsigned char *)malloc(mdlen);
     if(!mdptr){

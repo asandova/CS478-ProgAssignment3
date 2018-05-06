@@ -1,11 +1,12 @@
 #ifndef ENDECRYPT_H
 #define ENDECRYPT_H
-#include <openssl\evp.h>
-#include <openssl\rsa.h>
-#include <openssl\pem.h>
-#include <openssl\evp.h>
-#include <openssl\bio.h>
-#include <openssl\err.h>
+#include <openssl/evp.h>
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
+#include <openssl/evp.h>
+#include <openssl/crypto.h>
+#include <openssl/engine.h>
+#include <openssl/rand.h>
 #include <string>
 /**
 FILE: EnDecrypt.h
@@ -18,10 +19,10 @@ NOTE:
 using namespace std;
 
 //Part 2 of Project 3
-void PARTII(string pub3path, string sessionpath, string privkeypath, string plainpath, string IVpath);
+extern void PARTII(string pub3path, string sessionpath, string privkeypath, string plainpath, string IVpath);
 
 //Part 3 of Project 3
-void PARTIII(string pubpath, string sessionpath, string cipherpath, string IVpath, string signpath);
+extern void PARTIII(string pubpath, string sessionpath, string cipherpath, string IVpath, string signpath);
 
 void DecryptPub(string cipherpath, string pubkeypath, string outpath);
 void sign(string plainpath, string privpath, string outpath);
