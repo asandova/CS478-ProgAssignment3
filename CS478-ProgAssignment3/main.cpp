@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
 
 	if (!parts) {
 		//Part II
-		if (messagePath == "" || sessionPath == "" || pubPath == "" || privPath == "" || IVpath == "") {
+		if (messagePath.empty() || sessionPath.empty() || pubPath.empty() || privPath.empty() || IVpath.empty()) {
 			cout << "One or all required filepaths was not entered for PART II.\nExiting.." << endl;
 			exit(1);
 		}else{
@@ -112,7 +112,7 @@ int main(int argc, char* argv[]) {
 	}
 	else {
 		//Part III
-		if (desPath == "" || sessionPath == "" || pubPath == "" || signPath == "" || IVpath == "") {
+		if (desPath.empty() || sessionPath.empty() || pubPath.empty() || signPath.empty() || IVpath.empty() ) {
 			cout << "One or all required filepaths was not entered for PART III.\nExiting.." << endl;
 			exit(1);
 		}
