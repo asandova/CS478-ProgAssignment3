@@ -12,30 +12,23 @@ FILE: EnDecrypt.h
 Author: August B. Sandoval
 
 NOTE:
-Used http://hayageek.com/rsa-encryption-decryption-openssl-c/ as tutorial for RSA Encyption & Decryption
+	I had received help from classmates to get openssl to work
 */
 
 using namespace std;
 
 //Part 2 of Project 3
-void Encrypt(string& plain, string& keypath,bool pub);
+void PARTII(string pub3path, string sessionpath, string privkeypath, string plainpath, string IVpath);
 
 //Part 3 of Project 3
-void Decrypt(string& cipher, string& key,bool pub);
+void PARTIII(string pubpath, string sessionpath, string cipherpath, string IVpath, string signpath);
 
+void DecryptPub(string cipherpath, string pubkeypath, string outpath);
+void sign(string plainpath, string privpath, string outpath);
+int verify_sign(string pubkeyPath, string cipherPath, string sign);
 string readfile(string& path);
+void writefile(const char* data, size_t size, string filename);
 
-void writefile(unsigned char* data, size_t size, string filename);
 
-unsigned char* ReadKeyPem(string& path);
-
-///Methods for RSA Encryption and Decryption
-extern int padding;
-RSA * createRSAinstance(unsigned char * key, int pub);
-int pub_encrypt(unsigned char * data, int data_len, unsigned char * key, unsigned char *encrypted);
-int priv_encrypt(unsigned char * data, int data_len, unsigned char * key, unsigned char *encrypted);
-int pub_decrypt(unsigned char * enc_data, int data_len, unsigned char * key, unsigned char *decrypted);
-int priv_decrypt(unsigned char * data, int data_len, unsigned char * key, unsigned char *encrypted);
-void printLastError(char *msg);
 
 #endif // !ENDECRYPT_H

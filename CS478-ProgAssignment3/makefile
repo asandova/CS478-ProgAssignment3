@@ -1,10 +1,12 @@
-all: link
+all: Assign3
 
-link:   main.o BinaryString.o des_utils.o DES.o
-	g++ -std=c++11 main.o BinaryString.o des_utils.o DES.o -o des
+Assign3: main.cpp openssl DES
+	g++ -std=c++11 main.cpp -o Prog3 -lcrypto
 
-main.o: main.cpp
-	g++ -std=c++11 -c main.cpp
+openssl: EnDecrypt.cpp EnDecrypt.h
+	g++ -std=c++11 -c EnDecrypt.cpp
+
+DES: Binarystring.o des_utils.o DES.o
 
 BinaryString.o: BinaryString.h BinaryString.cpp
 	g++ -std=c++11 -c BinaryString.cpp

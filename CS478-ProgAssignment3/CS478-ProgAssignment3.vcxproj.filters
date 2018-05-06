@@ -49,5 +49,25 @@
     <Text Include="makefile">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="IV.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Message.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="encrypted_session.key">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="myprivkey.pem">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="mypubkey.pem">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="TApubkey.pem">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

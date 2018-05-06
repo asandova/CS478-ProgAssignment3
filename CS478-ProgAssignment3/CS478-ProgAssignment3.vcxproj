@@ -138,7 +138,15 @@
     <ClInclude Include="EnDecrypt.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="IV.txt" />
     <Text Include="makefile" />
+    <Text Include="Message.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="encrypted_session.key" />
+    <None Include="myprivkey.pem" />
+    <None Include="mypubkey.pem" />
+    <None Include="TApubkey.pem" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
