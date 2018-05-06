@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
 				-pub <thirdPartyKeyPath>
 				-priv <privatekeyPath>
 				-IV <ivpath>
+		-II -message Message.txt -sess encrypted_session.key -pub TApubkey.pem -priv myprivkey.pem -IV IV.txt
 		partIII:
 			./a.out 
 				-III{must be first}
@@ -35,6 +36,7 @@ int main(int argc, char* argv[]) {
 				-des <desCipherPath>
 				-sign <signaturePath>
 				-IV <ivpath>
+		-III -pub mypubkey.pem -sess session.txt -des message.enc.txt -sign signature.txt -IV IV.txt
 	*/
 	bool parts = 0;
 	string pubPath;
@@ -101,7 +103,7 @@ int main(int argc, char* argv[]) {
 
 	if (!parts) {
 		//Part II
-		if (messagePath == "" || sessionPath == "" || pubPath == "" || privPath == "") {
+		if (messagePath == "" || sessionPath == "" || pubPath == "" || privPath == "" || IVpath == "") {
 			cout << "One or all required filepaths was not entered for PART II.\nExiting.." << endl;
 			exit(1);
 		}else{
@@ -110,7 +112,13 @@ int main(int argc, char* argv[]) {
 	}
 	else {
 		//Part III
-		
+		if (desPath == "" || sessionPath == "" || pubPath == "" || signPath == "" || IVpath == "") {
+			cout << "One or all required filepaths was not entered for PART III.\nExiting.." << endl;
+			exit(1);
+		}
+		else {
+			PARTIII(pubPath,sessionPath,desPath,IVpath,signPath);
+		}
 	}
 
 	return 0;
