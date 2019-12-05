@@ -1,0 +1,19 @@
+		command line args setup
+		partII:
+			./a.out
+				-II{must be first} 
+				-message <messageFilePath>
+				-sess <encryptedSessionPath>
+				-pub <thirdPartyKeyPath>
+				-priv <privatekeyPath>
+				-IV <ivpath>
+		examlple ./a.out -II -message Message.txt -sess encrypted_session.key -pub TApubkey.pem -priv myprivkey.pem -IV IV.txt
+		partIII:
+			./a.out 
+				-III{must be first}
+				-pub <publickeyPath>
+				-sess <decryptedSessionPath>
+				-des <desCipherPath>
+				-sign <signaturePath>
+				-IV <ivpath>
+		example ./a.out -III -pub mypubkey.pem -sess session.txt -des message.enc.txt -sign signature.txt -IV IV.txt
