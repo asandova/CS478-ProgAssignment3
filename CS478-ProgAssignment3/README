@@ -7,7 +7,7 @@
 				-pub <thirdPartyKeyPath>
 				-priv <privatekeyPath>
 				-IV <ivpath>
-		examlple ./a.out -II -message Message.txt -sess encrypted_session.key -pub TApubkey.pem -priv myprivkey.pem -IV IV.txt
+		example ./a.out -II -message Message.txt -sess encrypted_session.key -pub TApubkey.pem -priv myprivkey.pem -IV IV.txt
 		partIII:
 			./a.out 
 				-III{must be first}
